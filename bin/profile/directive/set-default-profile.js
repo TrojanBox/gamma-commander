@@ -3,6 +3,7 @@ let ProfileManage = require('../module/profile-manage');
 
 module.exports = args => {
     let pm = new ProfileManage(config.user.profile);
+    args.params[0] = args.params[0].split('//')[1];
     if (pm.setDefaultProfile(args.params[0])) {
         console.log('');
         console.log('  操作已经完成。');

@@ -77,6 +77,31 @@ class ProfileManage {
         if (!fs.existsSync(this.path) && !rfs.mkdirsSync(path.join(this.path, '..'))) return false;
         return fs.writeFileSync(this.path, JSON.stringify(this.profile));
     }
+
+    /**
+     * 编辑配置文件
+     * @param callable
+     * @param file
+     */
+    editProfileFileToJSON(callable, file) {
+        let filePath = path.join(JSON.parse(this.profile['list'][this.profile['default']]).workDir, ...file);
+        if (!fs.existsSync(path.dirname(filePath))) rfs.mkdirsSync(path.dirname(filePath));
+        if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, '{}');
+        let content = JSON.parse(fs.readFileSync(filePath).toString());
+        callable(content);
+        return fs.writeFileSync(filePath, JSON.stringify(content));
+    }
+
+    /**
+     * 插件配置文件
+     * @param file
+     */
+    getProfileFileToJSON(file) {
+        let filePath = path.join(JSON.parse(this.profile['list'][this.profile['default']]).workDir, ...file);
+        if (!fs.existsSync(path.dirname(filePath))) rfs.mkdirsSync(path.dirname(filePath));
+        if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, '{}');
+        return JSON.parse(fs.readFileSync(filePath).toString());
+    }
 }
 
 module.exports = ProfileManage;

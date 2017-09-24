@@ -8,6 +8,7 @@ module.exports = args => {
 
     // 将项目检出到目标地址
     let gitStorage = config.user.gitStorage + args.params[0];
+    args.params[0] = args.params[0].split('//')[1];
     let targetPath = path.join(config.storagePath, 'user', 'profile', args.params[0]);
     let pm = new ProfileManage(config.user.profile);
 

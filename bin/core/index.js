@@ -6,15 +6,16 @@ let i18n = require('i18next').createInstance().init(require('./language'));
 let Command = require('../../components/commander/index');
 let path = require('path');
 let commandPath = path.join(__dirname, '..');
-let pluginPath = path.join(gamma.rootdir, 'plugins');
 let commandLoader = require('./module/command.loader');
 let helperDirective = require('./directive/helper');
+let pm = undefined;
+try { pm = require(gamma.rootdir + '/interface/profile'); } catch (e) {}
 
 let commander = new Command();
 commander.setConf({
-    title: 'System Tools',
+    title: 'Gamma Commander',
     version: '1.0.0034',
-    author: 'justwe9517',
+    author: 'TrojanBox',
     homepage: 'http://git.oschina.net/mypi/system-tools',
     description: i18n.t('commanderDescription')
 });
@@ -36,10 +37,13 @@ commandLoader.loadCommandList('core', commandPath, ['core'], (cmdSettings, subCo
 });
 
 // 加载插件的命令
-commandLoader.loadCommandList('plugin', pluginPath, [], (cmdSettings, subCommand) => {
-    commander.declare(cmdSettings.option, cmdSettings.description + ' [P]');
-    if (cmdSettings.option) commander.implement(cmdSettings.name, args => require(path.join(subCommand))(args))
-});
+if (pm !== undefined) {
+    let pluginList = pm.getProfileFileToJSON(['plugin', 'install-plugin.json']).plugins || [];
+    commandLoader.loadPluginList('plugin', pluginList, [], (cmdSettings, subCommand) => {
+        commander.declare(cmdSettings.option, cmdSettings.description + ' [P]');
+        if (cmdSettings.option) commander.implement(cmdSettings.name, args => require(path.join(subCommand))(args))
+    });
+}
 
 // 安装
 commander.implement('install', args => require('./directive/install')(args));

@@ -2,6 +2,8 @@
 
 集成一些常用的命令，并通过 git 同步你的命令设置。
 
+目前仅支持 Linux。
+
 # 安装
 
 `npm install gamma-commander --save`
@@ -16,4 +18,4 @@ require('gamma-commander');
 
 `node ./index.js -h`
 
-插件执行结果。
+查看执行结果。

@@ -19,7 +19,15 @@ module.exports = (argv) => {
     console.log('');
 
     let aliasList = [];
-    commandLoader.loadCommandList(commandPath, commandBlackList, (cmdSettings) => {
+    commandLoader.loadCommandList(['core'], commandPath, commandBlackList, (cmdSettings) => {
+        if (cmdSettings.alias) {
+            for (let i in cmdSettings.alias) if (cmdSettings.alias.hasOwnProperty(i)) {
+                aliasConf[i] = cmdSettings.alias[i];
+            }
+        }
+    });
+
+    commandLoader.loadCommandList(['plugin'], commandPath, commandBlackList, (cmdSettings) => {
         if (cmdSettings.alias) {
             for (let i in cmdSettings.alias) if (cmdSettings.alias.hasOwnProperty(i)) {
                 aliasConf[i] = cmdSettings.alias[i];
