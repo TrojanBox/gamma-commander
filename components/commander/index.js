@@ -1,6 +1,6 @@
 "use strict";
 
-const i18n = require('i18next').init(require('./languate'));
+const i18n = require('i18next').init(require('./language'));
 let EventEmitter = require('events').EventEmitter;
 let path = require('path');
 let string = require('../util/string');

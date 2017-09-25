@@ -12,7 +12,7 @@ module.exports = (argv) => {
     commander.declare('-l, --alias-list', i18n.t('aliasList'), true);
 
     commander.implement('run', args => require('./directive/run')(args));
-    commander.implement('--alias-list', args => require('./directive/alias-list')(args));
+    commander.implement('--alias-list', args => require('./directive/list')(args));
 
     commander.listen(argv.argv);
 };

@@ -1,7 +1,7 @@
 "use strict";
 
 const Commander = require('../const').Commander;
-const i18n = require('i18next').init(require('../languate'));
+const i18n = require('i18next').init(require('../language'));
 
 /**
  * 命令加载处理器
