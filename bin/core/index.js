@@ -49,7 +49,6 @@ commander.implement('install', args => require('./directive/install')(args));
 
 // 别名
 commander.implement('alias', args => require('./directive/alias')(args));
-commander.implement('run', args => require('./directive/run')(args));
 commander.implement('--alias-list', args => require('./directive/alias-list')(args));
 commander.implement('--refresh-cache', args => require('./directive/refresh-cache')(args));
 
