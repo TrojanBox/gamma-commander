@@ -25,9 +25,7 @@ commander.declare('-r, --refresh-cache', i18n.t('refreshCache'), true);
 commander.declare('--develop-loader-document', i18n.t('developLoaderDocument'), true);
 commander.declare('--develop-command-document', i18n.t('developCommandDocument'), true);
 commander.declare('--develop-enable-debug', i18n.t('developEnableDebug'), true);
-commander.declare('-L, --alias-list', i18n.t('aliasList'), true);
 commander.declare('install', i18n.t('install'), true);
-commander.declare('alias <name>', i18n.t('alias'), true);
 
 // 加载注册的命令
 commandLoader.loadCommandList('core', commandPath, ['core'], (cmdSettings, subCommand) => {
@@ -48,8 +46,6 @@ if (pm !== undefined) {
 commander.implement('install', args => require('./directive/install')(args));
 
 // 别名
-commander.implement('alias', args => require('./directive/alias')(args));
-commander.implement('--alias-list', args => require('./directive/alias-list')(args));
 commander.implement('--refresh-cache', args => require('./directive/refresh-cache')(args));
 
 // 增加开发文件
