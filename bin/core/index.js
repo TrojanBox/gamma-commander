@@ -27,7 +27,6 @@ commander.declare('--develop-command-document', i18n.t('developCommandDocument')
 commander.declare('--develop-enable-debug', i18n.t('developEnableDebug'), true);
 commander.declare('-L, --alias-list', i18n.t('aliasList'), true);
 commander.declare('install', i18n.t('install'), true);
-commander.declare('run <command>', i18n.t('run'), true);
 commander.declare('alias <name>', i18n.t('alias'), true);
 
 // 加载注册的命令
