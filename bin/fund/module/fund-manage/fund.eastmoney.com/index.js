@@ -1,3 +1,4 @@
+let path = require('path');
 let selenium = require('selenium-webdriver');
 let firefox = require('selenium-webdriver/firefox');
 

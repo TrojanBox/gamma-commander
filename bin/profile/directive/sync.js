@@ -10,9 +10,7 @@ module.exports = () => {
     let message = 'sync ' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 
     try {
-        console.log('');
         console.log('正在同步配置信息...');
-        console.log('');
         try {
             execSync(`cd ${profileInfo.workDir} && git add .`);
             execSync(`cd ${profileInfo.workDir} && git commit -m "${message}"`);
@@ -20,8 +18,6 @@ module.exports = () => {
 
         execSync(`cd ${profileInfo.workDir} && git pull`);
         execSync(`cd ${profileInfo.workDir} && git push`);
-
-        console.log('');
     } catch (e) {
         console.log(e.message);
     }

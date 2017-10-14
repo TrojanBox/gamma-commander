@@ -24,6 +24,9 @@
   "homepage": "https://github.com/TrojanBox/gamma-commander#readme",
   "dependencies": {
     "colors": "^1.1.2",
-    "i18next": "^9.0.0"
+    "i18next": "^9.0.0",
+    "selenium-webdriver": "^3.6.0",
+    "sleep.async": "^1.0.4",
+    "table": "^4.0.2"
   }
 }

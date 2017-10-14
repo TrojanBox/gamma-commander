@@ -9,24 +9,20 @@ module.exports = (pm, args) => {
         console.log();
         for (let i in data['plugins']) if (data['plugins'].hasOwnProperty(i)) {
             let plugin = data['plugins'][i];
-            console.log('  ' + i18n.t('installing'));
+            console.log(i18n.t('installing'));
             let s = spawnSync('npm', ['install', plugin, '--save']);
             if (s.status === 0) {
                 try {
                     require(path.join(plugin, 'declare.js'));
-                    console.log('  ' + plugin + ' ' + i18n.t('installSuccess'));
-                    console.log('');
+                    console.log(plugin + ' ' + i18n.t('installSuccess'));
                 } catch (e) {
-                    console.log('  ' + i18n.t('installFailParseError'));
-                    console.log('');
+                    console.log(i18n.t('installFailParseError'));
                     spawnSync('npm', ['remove', plugin]);
                 }
             } else {
-                console.log('  ' + i18n.t('installFail'));
-                console.log('');
+                console.log(i18n.t('installFail'));
             }
         }
-        console.log();
-        
+
     }, ['plugin', 'install-plugin.json']);
 };

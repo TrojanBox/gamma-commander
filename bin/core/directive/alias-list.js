@@ -14,9 +14,7 @@ let commandBlackList = ['core'];
  */
 module.exports = (argv) => {
 
-    console.log('');
-    console.log('  别名列表');
-    console.log('');
+    console.log('别名列表');
 
     let aliasList = [];
     commandLoader.loadCommandList(['core'], commandPath, commandBlackList, (cmdSettings) => {
@@ -38,12 +36,11 @@ module.exports = (argv) => {
     for (let i in aliasConf) if (aliasConf.hasOwnProperty(i)) aliasList.push(i);
 
     if (aliasList.length <= 0) {
-        console.log('    暂无定义的别名列表。');
+        console.log('  暂无定义的别名列表。');
     } else {
         let width = string.max(aliasList) + 4;
         for (let a in aliasConf) if (aliasConf.hasOwnProperty(a)) {
-            console.log('    ' + string.pad(a, width) + ' ' + aliasConf[a].description);
+            console.log(string.pad(a, width) + ' ' + aliasConf[a].description);
         }
     }
-    console.log('');
 };

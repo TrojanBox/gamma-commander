@@ -12,13 +12,9 @@ module.exports = () => {
             targetPath = '~/bin/' + config.registerCommander;
             exec("echo '#!/bin/sh\nnode " + dispatcherPath + " $@' > " + targetPath + ' && chmod 777 ' + targetPath, function (err, sto) {
                 if (err) {
-                    console.log('');
-                    console.log('  在向 ' + targetPath + ' 写入数据时出现问题，需要 root 权限。');
-                    console.log('');
+                    console.log('在向 ' + targetPath + ' 写入数据时出现问题，需要 root 权限。');
                 } else {
-                    console.log('');
-                    console.log('  操作成功。');
-                    console.log('');
+                    console.log('操作成功。');
                 }
             });
             break;
@@ -26,20 +22,14 @@ module.exports = () => {
             targetPath = path.join('C:', 'Windows', 'System32', config.registerCommander + '.bat');
             exec("echo @echo off ^&^& node " + dispatcherPath + " ^%^* > " + targetPath, function (err, sto) {
                 if (err) {
-                    console.log('');
-                    console.log('  在向 ' + targetPath + ' 写入数据时出现问题，需要 Administrator 权限。');
-                    console.log('');
+                    console.log('在向 ' + targetPath + ' 写入数据时出现问题，需要 Administrator 权限。');
                 } else {
-                    console.log('');
-                    console.log('  操作成功。');
-                    console.log('');
+                    console.log('操作成功。');
                 }
             });
             break;
         default:
-            console.log('');
-            console.log('  INSTALL 命令尚不支持您的操作系统。');
-            console.log('');
+            console.log('INSTALL 命令尚不支持您的操作系统。');
             break;
     }
 };

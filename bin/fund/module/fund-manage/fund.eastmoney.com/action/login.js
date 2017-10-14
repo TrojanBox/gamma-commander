@@ -30,6 +30,7 @@ class Login {
         this.driver = this.manage.driver;
         await this.open();
         await this.setLoginInfo();
+        await sleep(200);
         let result = await this.login();
         if (result) {
             return new Promise(t => t(this.manage.genReturn(true, 200, {
@@ -42,7 +43,7 @@ class Login {
 
     /**
      *
-     * @returns {Promise<this>}
+     * @returns {Promise<Login>}
      */
     async open() {
         await this.driver.get('https://login.1234567.com.cn/login');
@@ -51,7 +52,7 @@ class Login {
 
     /**
      * 设置登录信息
-     * @returns {Promise<this>}
+     * @returns {Promise<Login>}
      */
     async setLoginInfo() {
         await this.driver.findElement(selenium.By.id('tbname')).sendKeys(this.username);
@@ -65,7 +66,7 @@ class Login {
      */
     async login() {
         await this.driver.findElement(selenium.By.className('submit')).click();
-        await sleep(4000);
+        await sleep(2000);
         let currentUrl = await this.driver.getCurrentUrl();
         if (currentUrl === 'https://login.1234567.com.cn/login')
             return new Promise(t => t(false));

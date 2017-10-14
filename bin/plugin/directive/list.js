@@ -7,11 +7,9 @@ module.exports = (pm, args) => {
 
     pm.editProfileFileToJSON(data => {
 
-        console.log('');
         data['plugins'] = data['plugins'] || [];
         if (data['plugins'].length <= 0) {
             console.log("  " + i18n.t('notFoundPlugin'));
-            console.log('');
             return false;
         }
 
@@ -50,8 +48,7 @@ module.exports = (pm, args) => {
         let pluginDescriptionMax = string.max(pluginDescriptionListTmp) + 6;
         let pluginStatusMax = string.max([uninstallStatus ? i18n.t('list.pluginStatus.uninstall') : i18n.t('list.pluginStatus.install')]);
 
-        console.log('  '
-            + string.pad(pluginName, pluginNameMax)
+        console.log(string.pad(pluginName, pluginNameMax)
             + string.pad(pluginCommand, pluginCommandMax)
             + string.pad(pluginDescription, pluginDescriptionMax)
             + pluginStatus);
@@ -59,7 +56,7 @@ module.exports = (pm, args) => {
         let pluginMax = pluginCommandMax + pluginNameMax + pluginDescriptionMax + pluginStatusMax;
         let pluginX = '';
         for (let i = 0; i < pluginMax; i++) pluginX += '-';
-        console.log('  ' + pluginX);
+        console.log(pluginX);
 
         for (let i in pluginNameList) if (pluginNameList.hasOwnProperty(i)) {
             if (pluginStatusList[pluginNameList[i]]) {
@@ -67,22 +64,19 @@ module.exports = (pm, args) => {
                 let pluginCommand = string.pad(pluginList[pluginNameList[i]].name, pluginCommandMax);
                 let pluginDescription = string.pad(pluginList[pluginNameList[i]].description, pluginDescriptionMax);
                 let pluginStatus = i18n.t('list.pluginStatus.install').green;
-                console.log('  ' + pluginName + pluginCommand + pluginDescription + pluginStatus);
+                console.log(pluginName + pluginCommand + pluginDescription + pluginStatus);
             } else {
                 let pluginName = string.pad(pluginNameList[i], pluginNameMax);
                 let pluginCommand = string.pad('--', pluginCommandMax);
                 let pluginDescription = string.pad('--', pluginDescriptionMax);
                 let pluginStatus = i18n.t('list.pluginStatus.uninstall').red;
-                console.log('  ' + pluginName + pluginCommand + pluginDescription + pluginStatus);
+                console.log(pluginName + pluginCommand + pluginDescription + pluginStatus);
             }
         }
 
         if (uninstallStatus) {
-            console.log('');
-            console.log('  ' + i18n.t('hasProblemPlugin').yellow);
+            console.log(i18n.t('hasProblemPlugin').yellow);
         }
-
-        console.log('');
 
     }, ['plugin', 'install-plugin.json']);
 };

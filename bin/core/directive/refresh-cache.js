@@ -7,8 +7,6 @@ module.exports = () => {
         rfs.rmdirsSync(config.commandCachePath);
         rfs.mkdirsSync(config.commandCachePath);
     }
-    console.log('');
-    console.log('  缓存已经刷新。');
-    console.log('');
+    console.log('缓存已经刷新。');
 
 };

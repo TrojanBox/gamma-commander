@@ -83,13 +83,13 @@ class ProfileManage {
      * @param callable
      * @param file
      */
-    editProfileFileToJSON(callable, file) {
+    async editProfileFileToJSON(callable, file) {
         let filePath = path.join(JSON.parse(this.profile['list'][this.profile['default']]).workDir, ...file);
         if (!fs.existsSync(path.dirname(filePath))) rfs.mkdirsSync(path.dirname(filePath));
         if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, '{}');
         let content = JSON.parse(fs.readFileSync(filePath).toString());
-        callable(content);
-        return fs.writeFileSync(filePath, JSON.stringify(content));
+        await callable(content);
+        return fs.writeFileSync(filePath, JSON.stringify(content, null, 2));
     }
 
     /**

@@ -6,22 +6,19 @@ module.exports = (pm, args) => {
     pm.editProfileFileToJSON(data => {
         data['plugins'] = data['plugins'] || [];
         console.log();
-        console.log('  ' + i18n.t('installing'));
+        console.log(i18n.t('installing'));
         let s = spawnSync('npm', ['install', args.params[0], '--save']);
         if (s.status === 0) {
             try {
                 require(path.join(args.params[0], 'declare.js'));
                 data['plugins'].push(args.params[0]);
-                console.log('  ' + i18n.t('installSuccess'));
-                console.log('');
+                console.log(i18n.t('installSuccess'));
             } catch (e) {
-                console.log('  ' + i18n.t('installFailParseError'));
-                console.log('');
+                console.log(i18n.t('installFailParseError'));
                 spawnSync('npm', ['remove', args.params[0]]);
             }
         } else {
-            console.log('  ' + i18n.t('installFail'));
-            console.log('');
+            console.log(i18n.t('installFail'));
         }
     }, ['plugin', 'install-plugin.json']);
 };

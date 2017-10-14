@@ -12,21 +12,18 @@ try { pm = require(gamma.rootdir + '/interface/profile'); } catch (e) {}
  */
 module.exports = (argv) => {
 
-    console.log('');
-    console.log('  ' + i18n.t('list.aliasList'));
-    console.log('');
+    console.log(i18n.t('list.aliasList'));
 
     let aliasList = [];
 
     for (let i in aliasConf) if (aliasConf.hasOwnProperty(i)) aliasList.push(i);
 
     if (aliasList.length <= 0) {
-        console.log('    ' + i18n.t('list.empty'));
+        console.log(i18n.t('list.empty'));
     } else {
         let width = string.max(aliasList) + 4;
         for (let a in aliasConf) if (aliasConf.hasOwnProperty(a)) {
-            console.log('    ' + string.pad(a, width) + ' ' + aliasConf[a].description);
+            console.log(string.pad(a, width) + ' ' + aliasConf[a].description);
         }
     }
-    console.log('');
 };

@@ -27,6 +27,7 @@ class InitLogin {
      */
     async exec() {
         this.driver = this.manage.driver;
+        await this.open();
         await this.setCookies();
         let result = await this.login();
         if (result) {
@@ -38,12 +39,15 @@ class InitLogin {
         }
     }
 
+    async open() {
+        await this.driver.get('https://trade.1234567.com.cn/MyAssets/default');
+    }
+
     /**
      * 设置登录信息
-     * @returns {Promise<this>}
+     * @returns {Promise<InitLogin>}
      */
     async setCookies() {
-
         for (let i in this.cookies) if (this.cookies.hasOwnProperty(i)) {
             try {
                 await this.driver.manage().addCookie(this.cookies[i]);
@@ -58,12 +62,12 @@ class InitLogin {
      */
     async login() {
         await this.driver.get('https://trade.1234567.com.cn/MyAssets/default');
-        await sleep(4000);
+        await sleep(1000);
         let currentUrl = await this.driver.getCurrentUrl();
-        if (currentUrl === 'https://login.1234567.com.cn/login')
-            return new Promise(t => t(false));
-        else
+        if (currentUrl === 'https://trade.1234567.com.cn/MyAssets/default')
             return new Promise(t => t(true));
+        else
+            return new Promise(t => t(false));
     }
 
 }
