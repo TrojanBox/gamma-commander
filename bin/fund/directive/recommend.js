@@ -10,19 +10,19 @@ module.exports = (pm, args) => pm.editProfileFileToJSON(async data => {
     data['lastContext'] = data['lastContext'] || {};
     data['lastContext']['fundList'] = data['lastContext']['fundList'] || [];
 
-    console.log(i18n.t('directive.asset.find'));
+    console.log(i18n.t('directive.recommend.find'));
 
     let recommend = await emf.exec(new Recommend());
     if (recommend.status) {
         let fundList = await recommend.data.fundList();
         if (fundList.length <= 0) {
-            console.log(i18n.t('directive.asset.empty'));
+            console.log(i18n.t('directive.recommend.empty'));
         } else {
             let show = [
                 [
-                    i18n.t('directive.asset.fundName'),
-                    i18n.t('directive.asset.fundCode'),
-                    i18n.t('directive.asset.fundUrl')
+                    i18n.t('directive.recommend.fundName'),
+                    i18n.t('directive.recommend.fundCode'),
+                    i18n.t('directive.recommend.fundUrl')
                 ]
             ];
             for (let i in fundList) if (fundList.hasOwnProperty(i)) {

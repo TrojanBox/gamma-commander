@@ -11,18 +11,18 @@ module.exports = (pm, args) => pm.editProfileFileToJSON(async data => {
 
     let emf = new EastMoneyFund({headless: true});
 
-    console.log(i18n.t('directive.asset.check'));
+    console.log(i18n.t('directive.invest.check'));
 
     let initLogin = await emf.exec(new InitLogin(data['cookies']));
-    if (!initLogin.status) throw new Error(i18n.t('directive.asset.login'));
+    if (!initLogin.status) throw new Error(i18n.t('directive.invest.login'));
 
-    console.log(i18n.t('directive.asset.query'));
+    console.log(i18n.t('directive.invest.query'));
 
     let invest = await emf.exec(new Invest(data['userInfo'].username, data['userInfo'].password, ...args.params));
     if (invest.status) {
-        console.log(i18n.t('directive.asset.success'));
+        console.log(i18n.t('directive.invest.success'));
     } else {
-        console.log(i18n.t('directive.asset.error'));
+        console.log(i18n.t('directive.invest.error'));
     }
     emf.quit();
 
