@@ -1,6 +1,6 @@
 let path = require('path');
 let selenium = require('selenium-webdriver');
-let chrome = require('selenium-webdriver/chrome');
+let firefox = require('selenium-webdriver/firefox');
 
 /**
  * 基金管理
@@ -11,9 +11,10 @@ class FundManage {
      * 初始化浏览器对象
      */
     constructor(profile = {}) {
-        this.options = new chrome.Options().addArguments('--headless');
+        this.options = new firefox.Options();
         this.builder = new selenium.Builder();
-        this.builder.forBrowser('chrome').setChromeOptions(this.options);
+        if (profile.headless) this.options.headless();
+        this.builder.forBrowser('firefox').setFirefoxOptions(this.options);
         this.driver = this.builder.build();
     }
 
