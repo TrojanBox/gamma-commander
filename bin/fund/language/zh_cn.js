@@ -32,7 +32,7 @@ module.exports = {
                 login: '当前状态已登录，成功刷新 Cookies 信息。',
                 loginExpire: '登录状态过期，正在重新登录...',
                 success: '登录成功。',
-                error: '登录失败。'
+                error: '登录失败，请检查网络或用户名密码是否正确。'
             },
             recommend: {
                 find: '正在查找推荐基金...',

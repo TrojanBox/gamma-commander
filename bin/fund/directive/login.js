@@ -3,8 +3,6 @@ const EastMoneyFund = require('../module/fund-manage/fund.eastmoney.com/index');
 const InitLogin = require('../module/fund-manage/fund.eastmoney.com/action/init-login');
 const Login = require('../module/fund-manage/fund.eastmoney.com/action/login');
 let i18n = require('i18next').createInstance().init(require('../language'));
-let path = require('path');
-let string = require(gamma.rootdir + '/components/util/string');
 
 module.exports = (pm, args) => pm.editProfileFileToJSON(async data => {
 

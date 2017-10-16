@@ -66,7 +66,7 @@ class Login {
      */
     async login() {
         await this.driver.findElement(selenium.By.className('submit')).click();
-        await sleep(2000);
+        await sleep(4000);
         let currentUrl = await this.driver.getCurrentUrl();
         if (currentUrl === 'https://login.1234567.com.cn/login')
             return new Promise(t => t(false));
